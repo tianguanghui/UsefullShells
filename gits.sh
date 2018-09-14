@@ -1,22 +1,26 @@
 #!/bin/bash
 
+
+echo "(NULL)：git status"
+echo "pc：git push origin current_branch"
+echo "pm：git push origin master"
+echo "lu：git log --author username"
+echo "=== Press any key to continue... "
+
 read choose
 
 
 if [ ! ${choose} ]; then
-	git log
+	git status
+elif [[ ${choose} == "lu" ]]; then
+    git log --author tangkunyin  
 elif [[ ${choose} == "pc" ]]; then
-    git branch | xargs echo "git push origin "
-    git branch | xargs git push origin 
+    current_branch=$(git symbolic-ref --short -q HEAD)
+    echo "git push origin ${current_branch}"
+    git push origin ${current_branch} 
 elif [[ ${choose} == "pm" ]]; then
 	echo "git push origin master"
     git push origin master
-else
-    echo "没参数：git log"
-    echo "pc：git push origin current_branch"
-    echo "pm：git push origin master"
-    echo "=== 任意键退出 ==="
-    exit 1
 fi
 
 
