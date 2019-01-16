@@ -7,6 +7,7 @@ echo "pm：git push origin master"
 echo "lu：git log --author username"
 echo "rp：git remote prune origin"
 echo "dcr：git branch -D (remote branch of current name)"
+echo "bsp git branch --set-upstream-to=origin/<branch> branch"
 echo "========== Press any key to continue ================== "
 
 
@@ -29,4 +30,6 @@ elif [[ ${choose} == "rp" ]]; then
     git remote prune origin
 elif [[ ${choose} == "dcr" ]]; then
     git push origin :${current_branch} 
+elif [[ ${choose} == "bsp" ]]; then
+    git branch --set-upstream-to=origin/${current_branch} ${current_branch} 
 fi
